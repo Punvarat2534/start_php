@@ -1,5 +1,15 @@
 
 <?php require_once("template/layouts/header.php") ?>
+<script>
+
+$(document).ready(function() {
+  $('.btn-delete').on('click', function() {
+    var id = $(this).data('id'); // Gets '#myModal'
+    $("#hdnid").val(id);
+  });
+});
+
+</script>
 <div class="container">
   
 <div class="row" style="background-color:white;padding:1em;min-height:500px;">
@@ -29,12 +39,35 @@
         <td><?=$book["year"];?></td>
         <td style="text-align:center;">
             <a class="btn btn-primary" href="<?=$base_url;?>template/edit.php?id=<?=$book["id"];?>"><i class="fa fa-pencil"></i></a>
-             <a class="btn btn-danger" style=""><i class="fa fa-trash"></i></a>
+            <a class="btn btn-danger btn-delete" data-id="<?=$book["id"];?>" data-toggle="modal" data-target="#exampleModalCenter" style=""><i class="fa fa-trash"></i></a>
         </td>
       </tr>
   <?php } ?>
 </table>
 </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    <form method="post" action="<?=$base_url;?>action/books/delete.php">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input id="hdnid" name="hdnid" type="text">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
 </div>
 
 <?php require_once("template/layouts/bottom.php") ?>

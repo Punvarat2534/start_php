@@ -1,6 +1,6 @@
 <?php
 $start_url = "http://" . $_SERVER['SERVER_NAME'] . "/tsu";
-require_once("./../db.php");
+require_once($_SERVER['DOCUMENT_ROOT']."//tsu/config/db.php");
 
 $para = "";
 

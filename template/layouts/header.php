@@ -1,3 +1,11 @@
+<?php
+
+require_once($_SERVER['DOCUMENT_ROOT']."//tsu/action/auth/login.php");
+$base_url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+$start_url = "http://" . $_SERVER['SERVER_NAME'] . "/tsu";
+
+//echo realpath($_SERVER['DOCUMENT_ROOT']);
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,20 +90,25 @@ width:90%;margin:0 auto;
     border-bottom:1px dashed #dadadae5;
 }
 
+.msg{
+  padding:0.5em;border:3px solid red;background-color:#CCFFFF;color:red;margin:0 auto;width:100%;text-align:center;margin-top:10px;
+}
+
 </style>
 </head>
 <body>
-<?php 
-$base_url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
-$start_url = "http://" . $_SERVER['SERVER_NAME'] . "/tsu";
 
-//echo $start_url;
-?>
 <div class="topnav" id="myTopnav">
   <a href="<?=$start_url;?>" class="active">Home</a>
   <a href="#news">News</a>
   <a href="#contact">Contact</a>
   <a href="#about">About</a>
+  <?php if(isset($_SESSION["auth"])==true){ ?>
+  <a href="<?=$start_url;?>?auth=logout" style="float:right;">logout</a>
+  <?php }else{ ?>
+  <a href="#about" style="float:right;" data-toggle="modal" data-target="#login">login</a>
+  <a href="#about" style="float:right;" data-toggle="modal" data-target="#register">register</a>  
+  <?php  } ?>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
     <i class="fa fa-bars"></i>
   </a>
@@ -105,7 +118,80 @@ $start_url = "http://" . $_SERVER['SERVER_NAME'] . "/tsu";
 <div class="container" style="margin-top: auto;">    
 
 <div class="row" style="padding:0.5em;color:white;border:1px solid #666;background-color:#b13922;">
-login | register
+  <table style="width:120px;" ><tr>
+    <?php if(isset($_SESSION["auth"])==true){ ?>
+      <td>
+      <a href="<?=$start_url;?>?auth=logout" style="color:white;">logout</a>
+      </td>
+    <?php }else{ ?>
+    <td style="border-right:1px solid white;">
+      <a href="<?=$start_url;?>" style="color:white;">login</a>
+    </td>
+    <td style="padding-left:10px;"><a href="<?=$start_url;?>/template/auth/register.php" style="color:white;">register</a></td>
+    <?php  } ?>
+  </tr>
+</table>
 </div>
 </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    <form method="post" action="">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+    <label class="control-label col-sm-2 col-md-12" for="isbn">username:</label>
+    <div class="col-sm-12">
+      <input type="text" class="form-control" id="username" name="username" placeholder="username" required>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-sm-2" for="title">password:</label>
+    <div class="col-sm-12">
+      <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
+    </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="submit" name="btn_login" class="btn btn-primary">Login</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    <form method="post" action="<?=$base_url;?>action/books/delete.php">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input id="hdnid2" name="hdnid2" type="text">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+    </form>
+    </div>
+  </div>
 </div>

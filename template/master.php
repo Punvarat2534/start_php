@@ -1,10 +1,11 @@
 
-<?php require_once("template/layouts/header.php") ?>
+<?php require_once("./template/layouts/header.php");   ?>
 <script>
 
 $(document).ready(function() {
   $('.btn-delete').on('click', function() {
     var id = $(this).data('id'); // Gets '#myModal'
+    
     $("#hdnid").val(id);
   });
 });
@@ -15,8 +16,11 @@ $(document).ready(function() {
 <div class="row" style="background-color:white;padding:1em;min-height:500px;">
   <h2>Responsive Topnav Example</h2>
   <p>Resize the browser window to see how it works.</p>
-  
-<br> <a href="<?=$base_url;?>template/create.php" class="btn btn-primary" style="color:white;width:50px;height:35px;right:0;">เพิ่ม</a>
+<?php if(isset($_GET["msg"])){ ?>
+<div class="msg"><?=$_GET["msg"];?></div>
+<?php } ?>
+<br> <a href="<?=$base_url;?>template/create.php" class="btn btn-primary" style="color:white;width:50px;height:35px;float:right;margin-bottom:20px;">เพิ่ม</a>
+
 
 <table class="temps" style="margin-top:50px;">
   <tr>
@@ -53,21 +57,23 @@ $(document).ready(function() {
     <div class="modal-content">
     <form method="post" action="<?=$base_url;?>action/books/delete.php">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">ต้องการลบข้อมูลนี้หรือไม่ ? </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <input id="hdnid" name="hdnid" type="text">
+        ยืนยันการลบข้อมูล
+        <input id="hdnid" name="hdnid" type="hidden">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+       
+        <button type="submit" class="btn btn-primary">ยืนยัน</button>
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
       </div>
     </form>
     </div>
   </div>
 </div>
 
-<?php require_once("template/layouts/bottom.php") ?>
+<?php require_once("./template/layouts/bottom.php");  ?>

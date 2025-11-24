@@ -1,7 +1,8 @@
 
 <?php 
+session_start();
 require_once("./../action/books/create.php");
-require_once(dirname(__FILE__)."\layouts\header.php"); 
+require_once("./../template/layouts/header.php");
 ?>
 
 <div class="container">
@@ -61,4 +62,4 @@ require_once(dirname(__FILE__)."\layouts\header.php");
 </div>
 </div>
 
-<?php require_once(dirname(__FILE__)."\layouts\bottom.php") ?>
+<?php require_once("./../template/layouts/bottom.php");   ?>

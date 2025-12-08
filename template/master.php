@@ -42,7 +42,7 @@ $(document).ready(function() {
         <td><?=$book["author"];?></td>
         <td><?=$book["year"];?></td>
         <td style="text-align:center;">
-            <a class="btn btn-primary" href="<?=$base_url;?>template/edit.php?id=<?=$book["id"];?>"><i class="fa fa-pencil"></i></a>
+            <a class="btn btn-primary" href="<?=$start_url;?>/template/edit.php?id=<?=$book["id"];?>"><i class="fa fa-pencil"></i></a>
             <a class="btn btn-danger btn-delete" data-id="<?=$book["id"];?>" data-toggle="modal" data-target="#exampleModalCenter" style=""><i class="fa fa-trash"></i></a>
         </td>
       </tr>

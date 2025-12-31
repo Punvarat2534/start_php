@@ -13,14 +13,17 @@ $(document).ready(function() {
 </script>
 <div class="container">
   
+
 <div class="row" style="background-color:white;padding:1em;min-height:500px;">
   <h2>Responsive Topnav Example</h2>
   <p>Resize the browser window to see how it works.</p>
+
+<br> <a href="<?=$start_url;?>/template/create.php" class="btn btn-primary" style="color:white;width:50px;height:35px;float:right;margin-bottom:20px;">เพิ่ม</a>
+<br>
+
 <?php if(isset($_GET["msg"])){ ?>
 <div class="msg"><?=$_GET["msg"];?></div>
 <?php } ?>
-<br> <a href="<?=$base_url;?>template/create.php" class="btn btn-primary" style="color:white;width:50px;height:35px;float:right;margin-bottom:20px;">เพิ่ม</a>
-
 
 <table class="temps" style="margin-top:50px;">
   <tr>
@@ -55,7 +58,7 @@ $(document).ready(function() {
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-    <form method="post" action="<?=$base_url;?>action/books/delete.php">
+    <form method="post" action="<?=$start_url;?>/action/books/delete.php">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">ต้องการลบข้อมูลนี้หรือไม่ ? </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
